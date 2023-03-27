@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -22,3 +23,10 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+=======
+# Welcome
+
+This is a boiler repo for our phase four project. 
+
+Lets begin.
+>>>>>>> cfb1b3eca750fe7d1a9b9c13146389f86377c4d5
