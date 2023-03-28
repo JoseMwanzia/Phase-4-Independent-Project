@@ -237,5 +237,5 @@ This repository is maintained by:
 - [Kimathi Njoki](https://github.com/kimathinjoki) `scram Master`
 - [Joseph Mwanzia](https://github.com/JoseMwanzia)
 - [Kenrick Ngetich](https://github.com/Kenrick99)
-- [Khalid Ahmend](https://github.com/Kenrick99)
+- [Khalid Ahmed](https://github.com/certihimo)
 
