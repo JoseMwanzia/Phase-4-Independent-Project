@@ -156,6 +156,62 @@ Database schema definitions.
 
 
 ### ROUTES
+Sure, here are some possible routes for an API with tenant, house, apartment, and landlord models:
+
+- Tenants
+GET /tenants - returns a list of all tenants
+
+POST /tenants - creates a new tenant
+
+GET /tenants/{tenantId} - returns a specific tenant
+
+PUT /tenants/{tenantId} - updates a specific tenant
+
+DELETE /tenants/{tenantId} - deletes a specific tenant
+
+- Houses
+
+GET /houses - returns a list of all houses
+POST /houses - creates a new house
+GET /houses/{houseId} - returns a specific house
+PUT /houses/{houseId} - updates a specific house
+DELETE /houses/{houseId} - deletes a specific house
+
+- Apartments
+
+GET /apartments - returns a list of all apartments
+
+POST /apartments - creates a new apartment
+
+GET /apartments/{apartmentId} - returns a specific apartment
+
+PUT /apartments/{apartmentId} - updates a specific apartment
+
+DELETE /apartments/{apartmentId} - deletes a specific apartment
+
+- Landlords
+
+GET /landlords - returns a list of all landlords
+
+POST /landlords - creates a new landlord
+
+GET /landlords/{landlordId} - returns a specific landlord
+
+PUT /landlords/{landlordId} - updates a specific landlord
+
+DELETE /landlords/{landlordId} - deletes a specific landlord
+
+- Additional
+
+GET /tenants/{tenantId}/house - returns the house that belongs to the specified tenant
+
+GET /houses/{houseId}/tenant - returns the tenant that belongs to the specified house
+
+GET /apartments/{apartmentId}/houses - returns a list of all houses that belong to the specified apartment
+
+GET /houses/{houseId}/apartment - returns the apartment that the specified house belongs to
+
+GET /landlords/{landlordId}/apartments - returns a list of all apartments that belong to the specified landlord
 
 ## LICENSE
 
