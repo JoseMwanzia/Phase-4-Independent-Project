@@ -1,32 +1,185 @@
-<<<<<<< HEAD
-# README
+# RealState
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+RealState is a basic API built with Ruby rails. 
 
-Things you may want to cover:
+It serves as a backend API [link]()
 
-* Ruby version
+```
 
-* System dependencies
+```
 
-* Configuration
+The application has been built with the MVC design pattern.
 
-* Database creation
+## Pre-Requisites
+In order to use this repository you will need the following:
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+- Operating System **(Windows `10+`, Linux `3.8+`, or MacOS X `10.7+`)**
+- RAM >= 4GB
+- Free Space >= 2GB
 
-* Deployment instructions
+## Built With
+This application has been built with the following tools:
 
-* ...
-=======
-# Welcome
+![ruby](https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white)
+![sqlite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
+![Rails](https://img.shields.io/badge/rails-%23CC0000.svg?style=for-the-badge&logo=ruby-on-rails&logoColor=white)
+![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white)
+![Visual Studio](https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white)
 
-This is a boiler repo for our phase four project. 
+- **Ruby `v2.7.+`**
+- **SQlite3 `v1.6`**
+- **ActiveRecord `v7.0.4`**
+- **Rake `v13.0.6`**
+- **Puma `v6.1`**
+- **rerun `v0.14`**
+- **Ruby on Rails `v3.0.5`**
+- **Serializer `v5.3.0`**
 
-Lets begin.
->>>>>>> cfb1b3eca750fe7d1a9b9c13146389f86377c4d5
+
+## Setup
+You can setup this repository locally by following this manual
+
+1. Clone the repository
+    ```{shell}
+    git@github.com:P4-Project-G3/g23-project-backend.git
+   ```
+2. Ensure the ruby gems are setup in your machine
+    ```{shell}
+   bundle install
+   ```
+3. Perform any pending database migrations
+   ```{shell}
+   rake db:migrate
+   ```
+4. Run the application
+    ```{shell}
+    rails s
+    ```
+5. Open the application from your browser
+    ```
+   http://localhost:3000
+   ```
+   
+## Application
+This application is a simple web API that allows users to:
+
+- View houses.
+- View apartment
+- View tenants
+- Review a house
+- Enlist an apartment
+
+
+
+Or use the deployed [link]() directly:
+
+```
+
+
+```
+
+### MODELS
+Database schema definitions.
+
+### ERD Diagram
+
+<img src="img.png">
+
+
+#### Tenant
+
+| COLUMN      | DATA TYPE                                       | DESCRIPTION                         | 
+|-------------|-------------------------------------------------|-------------------------------------|
+| id          | Integer                                         | Unique identifier.                  |
+| name      | String                                          | The name of the tenant.               |
+| email | String                                          | The email of the tenant. |
+| password | String                                          | The password of the tenant. |
+| updated_at     | Date      | The date the hero was updated.        |
+| created_at   | Date                                            | The date hero was created.      |
+
+
+#### Landlord
+
+| COLUMN      | DATA TYPE                                       | DESCRIPTION                         | 
+|-------------|-------------------------------------------------|-------------------------------------|
+| id          | Integer                                         | Unique identifier.                  |
+| name      | String                                          | The name of the landlord.               |
+| contact_number | Integer                                          | The email of the landlord. |
+| email | String                                          | The email of the landlord. |
+| password | String                                          | The password of the landlord. |
+| updated_at     | Date      | The date the hero was updated.        |
+| created_at   | Date                                            | The date hero was created.      |
+
+
+#### Review
+
+| COLUMN        | DATA TYPE | DESCRIPTION                           | 
+|---------------|-----------|---------------------------------------|
+| id            | Integer   | Unique identifier.                    |
+| description | String    | House description. |
+| rate | Integer    | House description. |
+| tenant_id | Integer    | Tenant id. |
+| apartment_id | Integer    | Apartment id. |
+| updated_at    | Date      | The date the power was updated.        |
+| createdAt     | Date      | The date the power was created.        |
+
+
+#### House
+
+| COLUMN        | DATA TYPE | DESCRIPTION                           | 
+|---------------|-----------|---------------------------------------|
+| id            | Integer   | Unique identifier.                    |
+| house_no     | String    | House numberr.                     |
+| description | String    | House description. |
+| rent | String    | House description. |
+| tenant_id | Integer    | Tenant id. |
+| apartment_id | Integer    | Apartment id. |
+| updated_at    | Date      | The date the power was updated.        |
+| createdAt     | Date      | The date the power was created.        |
+
+
+### Apartment
+
+| COLUMN        | DATA TYPE | DESCRIPTION                           | 
+|---------------|-----------|---------------------------------------|
+| id            | Integer   | Unique identifier.                    |
+| name    | String   | Apartment name.                     |
+| location    | String   | Apartment location.                     |
+| type    | String   | Apartment type.                     |
+| landlord_id | Integer    | landlord foreign key |
+| house_id | Integer    | house foreign key |
+| updated_at    | Date      | The date the it was updated.        |
+| createdAt     | Date      | The date it was created.        |
+
+
+
+### ROUTES
+
+## LICENSE
+
+This repository is distributed under the MIT License
+
+```markdown
+Copyright 2023 
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), 
+to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
+
+
+## Author
+This repository is maintained by:
+
+- [Kimathi Njoki](https://github.com/kimathinjoki) `scram Master`
+- [Joseph Mwanzia](https://github.com/JoseMwanzia)
+- [Kenrick Ngetich](https://github.com/Kenrick99)
+- [Khalid Ahmend](https://github.com/Kenrick99)
+
