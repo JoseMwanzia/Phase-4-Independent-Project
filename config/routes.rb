@@ -7,4 +7,8 @@ Rails.application.routes.draw do
 
   get '/houses/:id/reviews', to: "houses#house_reviews"
 
+  get '/houses/:id/tenants', to: "houses#house_tenant"
+
+  get 'houses/:id/apartment', to: "houses#house_apartment"
+
 end

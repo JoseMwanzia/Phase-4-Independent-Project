@@ -60,6 +60,26 @@ class HousesController < ApplicationController
 
     end
 
+    def house_tenant 
+        house = House.find_by(id: params[:id])
+        if house 
+            render json: house.tenant, serializer: HouseTenantSerializer, status: :ok
+        else 
+            render json: {error: house.errors}, status: :not_found
+        end
+    end
+
+
+    def house_apartment  
+        house = House.find_id(id: params[:id])
+        if house 
+            render json: house, serializer: HouseApartmentSerializer, status: :ok 
+        else  
+            render json: {message: "House not found", error: house.errors}
+        end
+
+    end
+
 
     private
 
