@@ -156,62 +156,112 @@ Database schema definitions.
 
 
 ### ROUTES
-Sure, here are some possible routes for an API with tenant, house, apartment, and landlord models:
+
+Routes for tenant, house, apartment, and landlord models:
 
 - Tenants
-GET /tenants - returns a list of all tenants
 
-POST /tenants - creates a new tenant
+```
 
-GET /tenants/{tenantId} - returns a specific tenant
+    GET /tenants - returns a list of all tenants
 
-PUT /tenants/{tenantId} - updates a specific tenant
+    POST /tenants - creates a new tenant
 
-DELETE /tenants/{tenantId} - deletes a specific tenant
+    GET /tenants/{tenantId} - returns a specific tenant
+
+    PUT /tenants/{tenantId} - updates a specific tenant
+
+    DELETE /tenants/{tenantId} - deletes a specific tenant
+
+    GET /tenants/{tenantId}/reviews - returns a list of all reviews that belong to the specified tenant
+
+````
 
 - Houses
 
-GET /houses - returns a list of all houses
-POST /houses - creates a new house
-GET /houses/{houseId} - returns a specific house
-PUT /houses/{houseId} - updates a specific house
-DELETE /houses/{houseId} - deletes a specific house
+```
+
+    GET /houses - returns a list of all houses
+
+    POST /houses - creates a new house
+
+    GET /houses/{houseId} - returns a specific house
+
+    PUT /houses/{houseId} - updates a specific house
+
+    DELETE /houses/{houseId} - deletes a specific house
+
+    GET /houses/{houseId}/reviews - returns a list of all reviews that belong to the specified house
+
+```
 
 - Apartments
 
-GET /apartments - returns a list of all apartments
+```
 
-POST /apartments - creates a new apartment
+    GET /apartments - returns a list of all apartments
 
-GET /apartments/{apartmentId} - returns a specific apartment
+    POST /apartments - creates a new apartment
 
-PUT /apartments/{apartmentId} - updates a specific apartment
+    GET /apartments/{apartmentId} - returns a specific apartment
 
-DELETE /apartments/{apartmentId} - deletes a specific apartment
+    PUT /apartments/{apartmentId} - updates a specific apartment
+
+    DELETE /apartments/{apartmentId} - deletes a specific apartment
+
+```
 
 - Landlords
 
-GET /landlords - returns a list of all landlords
+```
 
-POST /landlords - creates a new landlord
+    GET /landlords - returns a list of all landlords
 
-GET /landlords/{landlordId} - returns a specific landlord
+    POST /landlords - creates a new landlord
 
-PUT /landlords/{landlordId} - updates a specific landlord
+    GET /landlords/{landlordId} - returns a specific landlord
 
-DELETE /landlords/{landlordId} - deletes a specific landlord
+    PUT /landlords/{landlordId} - updates a specific landlord
+
+    DELETE /landlords/{landlordId} - deletes a specific landlord
+
+```
 
 - Additional
 
-GET /tenants/{tenantId}/house - returns the house that belongs to the specified tenant
+```
 
-GET /houses/{houseId}/tenant - returns the tenant that belongs to the specified house
+    GET /tenants/{tenantId}/house - returns the house that belongs to the specified tenant
 
-GET /apartments/{apartmentId}/houses - returns a list of all houses that belong to the specified apartment
+    GET /houses/{houseId}/tenant - returns the tenant that belongs to the specified house
 
-GET /houses/{houseId}/apartment - returns the apartment that the specified house belongs to
+    GET /apartments/{apartmentId}/houses - returns a list of all houses that belong to the specified apartment
 
-GET /landlords/{landlordId}/apartments - returns a list of all apartments that belong to the specified landlord
+    GET /houses/{houseId}/apartment - returns the apartment that the specified house belongs to
+
+    GET /landlords/{landlordId}/apartments - returns a list of all apartments that belong to the specified landlord
+
+```
+
+- Reviews
+
+```
+
+    GET /reviews - returns a list of all reviews
+
+    POST /reviews - creates a new review
+
+    GET /reviews/{reviewId} - returns a specific review
+
+    PUT /reviews/{reviewId} - updates a specific review
+
+    DELETE /reviews/{reviewId} - deletes a specific review
+
+    GET /reviews?houseId={houseId} - returns a list of all reviews that belong to the specified house
+
+    GET /reviews?tenantId={tenantId} - returns a list of all reviews that belong to the specified tenant
+
+```
 
 ## LICENSE
 
