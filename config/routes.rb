@@ -22,5 +22,8 @@ Rails.application.routes.draw do
   post '/tenants/signup', to: "tenants#tenant_signup"
 
   delete '/tenant/logout', to: "tenants#tenant_logout"
+  
+  # apartment route
+  get '/apartments/:id/houses', to: "apartments#apartment_houses"
 
 end

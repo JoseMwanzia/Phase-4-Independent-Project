@@ -115,7 +115,7 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.8)
-    nokogiri (1.14.2-x86_64-darwin)
+    nokogiri (1.14.2-x86_64-linux)
       racc (~> 1.4)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -154,7 +154,7 @@ GEM
     rake (13.0.6)
     reline (0.3.3)
       io-console (~> 0.5)
-    sqlite3 (1.6.2-x86_64-darwin)
+    sqlite3 (1.6.2-x86_64-linux)
     thor (1.2.1)
     timeout (0.3.2)
     tzinfo (2.0.6)
@@ -165,21 +165,12 @@ GEM
     zeitwerk (2.6.7)
 
 PLATFORMS
-  x86_64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   active_model_serializers
   bcrypt (~> 3.1.7)
-  bootsnap
-  debug
-  puma (~> 5.0)
-  rack-cors
-  rails (~> 7.0.4, >= 7.0.4.3)
-  sqlite3 (~> 1.4)
-  tzinfo-data
-
-RUBY VERSION
-   ruby 3.0.0p0
+  active_model_serializers (~> 0.10.2)
 
 BUNDLED WITH
-   2.4.9
+   2.2.3
