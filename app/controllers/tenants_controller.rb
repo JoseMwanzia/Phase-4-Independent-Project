@@ -1,5 +1,7 @@
  class TenantsController < ApplicationController
 
+    before_action :landlord_authorize
+    skip_before_action :landlord_authorize, only: [:show, :update, :tenant_reviews, :house_tenant]
 
     def index 
         tenants = Tenant.all
@@ -41,33 +43,23 @@
     end
 
 
-    def tenant_reviews 
-        house = House.find_by(params[:id])
-        if house 
-            render json: house, serializer: HouseReviewsSerializer, status: :ok
-        else  
-            render json{message: "Not found", error: house:errors} 
-
-        end
-
-    end
 
     def house_tenant 
         tenat = Tenant.find_by(id: params[:id])
         if house 
-            render json: house.tenant, serializer: HouseTenantSerializer, status: :ok
+            render json: tenant.house, serializer: HouseTenantSerializer, status: :ok
         else 
-            render json: {error: house.errors}, status: :not_found
+            render json: {error: tenant.errors}, status: :not_found
         end
     end
 
 
     def tenant_reviews  
-        tenant = House.find_id(id: params[:id])
+        tenant = Tenant.find_id(id: params[:id])
         if house 
             render json: tenant.reviews, status: :ok 
         else  
-            render json: {message: "House not found", error: house.errors}
+            render json: {message: "No reviews", error: tenant.errors}
         end
 
     end
