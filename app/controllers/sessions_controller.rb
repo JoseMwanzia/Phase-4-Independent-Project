@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
          tenant = Tenant.where(sql, { username: tenant_params[:username],email: tenant_params[:email] }).first
 
         if tenant&.authenticate(tenant_params[:password])
-            session[:uid] = tenant.id
+            session[:tid] = tenant.id
             render json: {message: "Login successful",  data: {user:user, token:token}}, status: :ok
         else
             render json: {message: "Invalid username or password"}, status: :unauthorized
@@ -21,6 +21,13 @@ class SessionsController < ApplicationController
         else  
             render json: { errors: tenant.errors, status: :unprocessable_entity, message: "Failed"}
         end
+    end
+
+    def tenant_logout
+
+        session.delete(:tid)
+        render json: { message: "Logged out successful"}
+
     end
 
 end
