@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :tenants, only: [:index, :show, :update, :delete]
   resources :houses
  
@@ -25,5 +26,11 @@ Rails.application.routes.draw do
   
   # apartment route
   get '/apartments/:id/houses', to: "apartments#apartment_houses"
+  
+  resources :landlords, only: [:index, :show, :update, :delete]
+
+  # landlord
+
+  post '/landlord/login', to: 'sessions#landlord_login'
 
 end
