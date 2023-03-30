@@ -9,19 +9,5 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-
-ActiveRecord::Schema[7.0].define(version: 2023_03_29_080459) do
-  create_table "reviews", force: :cascade do |t|
-    t.integer "rating"
-    t.string "description"
-    t.integer "tenant_id", null: false
-    t.integer "house_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["house_id"], name: "index_reviews_on_house_id"
-    t.index ["tenant_id"], name: "index_reviews_on_tenant_id"
-  end
-
-  add_foreign_key "reviews", "houses"
-  add_foreign_key "reviews", "tenants"
+ActiveRecord::Schema[7.0].define(version: 0) do
 end
