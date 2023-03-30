@@ -1,4 +1,4 @@
 class ApartmentSerializer < ActiveModel::Serializer
-  attributes :id, :name, :location, :type
+  attributes :id, :name, :location, :category
 
 end
