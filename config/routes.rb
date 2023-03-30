@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  resources :reviews
   resources :tenants, only: [:index, :show, :update, :delete]
   resources :houses
  
