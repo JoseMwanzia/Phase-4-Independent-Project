@@ -1,6 +1,7 @@
 class LandlordsController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-
+before_action :landlord_authorize 
+skip_before_action :landlord_authorize, only: [:index]
     def index
         landlords = Landlord.all
        render json: landlords
