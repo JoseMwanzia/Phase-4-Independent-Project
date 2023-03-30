@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_080459) do
   create_table "apartments", force: :cascade do |t|
     t.string "name"
     t.string "location"
-    t.string "type"
+    t.string "category"
     t.integer "landlord_id", null: false
     t.integer "house_id", null: false
     t.datetime "created_at", null: false
@@ -27,12 +27,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_080459) do
     t.string "house_number"
     t.text "description"
     t.decimal "rent"
-    t.integer "tenant_id", null: false
     t.integer "apartment_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["apartment_id"], name: "index_houses_on_apartment_id"
-    t.index ["tenant_id"], name: "index_houses_on_tenant_id"
   end
 
   create_table "landlords", force: :cascade do |t|
@@ -66,7 +64,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_080459) do
 
   add_foreign_key "apartments", "landlords"
   add_foreign_key "houses", "apartments"
-  add_foreign_key "houses", "tenants"
   add_foreign_key "reviews", "houses"
   add_foreign_key "reviews", "tenants"
 end
