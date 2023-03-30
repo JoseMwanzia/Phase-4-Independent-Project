@@ -5,7 +5,7 @@ class CreateApartments < ActiveRecord::Migration[7.0]
       t.string :location
       t.string :type
       t.belongs_to :landlord, null: false, foreign_key: true
-      t.has_many :houses, null: false, foreign_key: true
+      t.integer :house_id, null: false, foreign_key: true
 
       t.timestamps
     end
