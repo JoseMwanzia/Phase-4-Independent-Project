@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
 
+
+    # tenant authentication
+
     def tenant_login  
 
         sql = "username = :username OR email = :email"
@@ -16,7 +19,8 @@ class SessionsController < ApplicationController
 
     def tenant_signup 
         tenant = Tenant.create(tenant_params)
-        if tenant.valid? 
+        if tenant 
+            session[:tid] = tenant.id
             render json: tenant, status: :created
         else  
             render json: { errors: tenant.errors, status: :unprocessable_entity, message: "Failed"}
@@ -29,15 +33,36 @@ class SessionsController < ApplicationController
         render json: { message: "Logged out successful"}
 
     end
+
+    # landlord authentication
+
+    def landlord_signup 
+        landlord = Landlord.create(landlord_params)
+        if landlord 
+            session[:lid] = landlord.id
+            render json: landlord, status: :created
+        else  
+            render json: { errors: landlord.errors, status: :unprocessable_entity, message: "Failed"}
+        end
+    end
     
-       def landlord_login
+    def landlord_login
         landlord = Landlord.find_by(username: params[:username])
         if landlord&.authenticate(params[:password])
-            session[:landlord_id] = landlord.id
+            session[:lid] = landlord.id
             render json: landlord, status: :created
         else
             render json: { error: "Invalid username or password"}, status: :unauthorized
         end
+    end
+
+
+
+    def landlord_logout
+
+        session.delete(:lid)
+        render json: { message: "Logged out successful"}
+
     end
 
 end
