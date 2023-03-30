@@ -1,12 +1,6 @@
 class House < ApplicationRecord
-  belongs_to :tenant
+  
   belongs_to :apartment
-  has_many :reviews, depedant: :delete
-
-
-  validates :description, {
-    presence: true
-  }
-
-
+  has_many :reviews, dependent: :destroy
+  has_many :tenants, through: :reviews
 end

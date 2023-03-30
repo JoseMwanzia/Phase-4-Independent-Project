@@ -6,6 +6,9 @@ ruby "3.0.0"
 #  Adds serializer
 gem "active_model_serializers"
 
+#add faker
+gem "faker"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 

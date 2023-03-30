@@ -1,5 +1,10 @@
 class HousesController < ApplicationController
 
+   
+    before_action :landlord_authorize 
+    skip_before_action :landlord_authorize, only: [:index, :show, :house_apartment, :house_reviews]
+
+    rescue_from StandardError, with: :standard_error
 
     def index 
         houses = House.all
@@ -44,7 +49,7 @@ class HousesController < ApplicationController
             house.destroy
             head :no_content 
         else 
-            render
+            render json: {error: house.errors}
         end
     end
 
@@ -54,7 +59,7 @@ class HousesController < ApplicationController
         if house 
             render json: house, serializer: HouseReviewsSerializer, status: :ok
         else  
-            render json{message: "Not found", error: house:errors} 
+            render json: {message: "Not found"} 
 
         end
 
@@ -65,13 +70,13 @@ class HousesController < ApplicationController
         if house 
             render json: house.tenant, serializer: HouseTenantSerializer, status: :ok
         else 
-            render json: {error: house.errors}, status: :not_found
+            render json:{message: "Not found"}, status: :not_found
         end
     end
 
 
     def house_apartment  
-        house = House.find_id(id: params[:id])
+        house = House.find_by(id: params[:id])
         if house 
             render json: house, serializer: HouseApartmentSerializer, status: :ok 
         else  

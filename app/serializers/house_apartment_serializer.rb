@@ -1,5 +1,5 @@
 class HouseApartmentSerializer < ActiveModel::Serializer
-  attributes :id, :house_number, :description,
+  attributes :id, :house_number, :description
 
 
   belongs_to :apartment
