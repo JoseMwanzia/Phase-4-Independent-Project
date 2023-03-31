@@ -31,9 +31,9 @@ skip_before_action :landlord_authorize, only: [:index]
 
     private 
 
-    def landlord_params
-        params.permit(:name, :contact_number, :email, :password)
-    end
+    # def landlord_params
+    #     params.permit(:username, :contact_number, :email, :password)
+    # end
 
     def render_not_found_response
         render json: {error: "Landlord not found"}, status: :not_found

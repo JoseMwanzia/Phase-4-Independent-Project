@@ -2,7 +2,7 @@ class HousesController < ApplicationController
 
    
     before_action :landlord_authorize 
-    skip_before_action :landlord_authorize, only: [:index, :show, :house_apartment, :house_reviews]
+    skip_before_action :landlord_authorize, only: [:index, :show, :house_apartment, :house_reviews, :update]
 
     rescue_from StandardError, with: :standard_error
 
@@ -24,17 +24,18 @@ class HousesController < ApplicationController
     def show
         house = House.find_by(id: params[:id])
         if house
-            render house: house, status: :ok
+            render json: house, status: :ok
         else 
-            render json: { errors: house.errors, status: :unprocessable_entity}
+            render json: { err3ors: house.errors, status: :unprocessable_entity}
         end
     end
 
     def update 
-        house = tenant.houses.find(params[:id]).update(house_params) 
+        tenant = Tenant.find(session[:tid])
+        house = tenant.houses.update(house_params) 
 
-        if house.valid?
-            render json: { message: "Updated successfully"}
+        if house
+            render json: {data: house, message: "Updated successfully"}
         else
             render json: { message: "Failed"}
         end
@@ -68,7 +69,7 @@ class HousesController < ApplicationController
     def house_tenant 
         house = House.find_by(id: params[:id])
         if house 
-            render json: house.tenant, serializer: HouseTenantSerializer, status: :ok
+            render json: house, serializer: HouseTenantSerializer, status: :ok
         else 
             render json:{message: "Not found"}, status: :not_found
         end
@@ -89,7 +90,7 @@ class HousesController < ApplicationController
     private
 
     def house_params
-        params.permit(:house_number, :description, :rent)
+        params.require(:house).permit(:house_number, :description, :rent)
     end
 
 end

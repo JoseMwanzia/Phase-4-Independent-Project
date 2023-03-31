@@ -28,7 +28,7 @@ end
 
 
 def landlord_params
-    params.permit(:id, :username, :contact_number, :email, :password)
+    params.permit(:username, :contact_number, :email, :password)
 end
 
 

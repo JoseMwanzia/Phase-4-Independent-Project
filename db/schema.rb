@@ -16,7 +16,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_080459) do
     t.string "location"
     t.string "category"
     t.integer "landlord_id", null: false
-    t.integer "house_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["landlord_id"], name: "index_apartments_on_landlord_id"

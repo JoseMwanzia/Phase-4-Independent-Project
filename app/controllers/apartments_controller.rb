@@ -1,5 +1,5 @@
 class ApartmentsController < ApplicationController
-    before_action :set_apartment, only: [:show, :update, :destroy]
+    # before_action :set_apartment, only: [:show, :update, :destroy]
 
     # GET /apartment
     def index
@@ -9,33 +9,37 @@ class ApartmentsController < ApplicationController
   
     # GET /apartment
     def show
+
         apartment = Apartment.find_by(id: params[:id])
         if apartment
             render json: apartment,status: :ok
         else 
             render json: {error: apartment.errors, message: "not found"}, status: :not_found
         end
-      render json: @apartment
+     
     end
   
     # POST /apartment
     def create
-      @apartment = Apartment.landlord.create(apartment_params)
-  
-      if @apartment
-        render json: @apartment, status: :created, location: @apartment
+      landlord = Landlord.find(session[:lid])
+      apartment = landlord.apartments.create(apartment_params)
+
+      if apartment
+        render json: apartment, status: :created
       else
-        render json: @apartment.errors, status: :unprocessable_entity
+        render json: {errors: apartment.errors}, status: :unprocessable_entity
       end
+
     end
   
     # PATCH/PUT /apartment
     def update
-        @apartment = Apartment.find_by(id: params[:id]).update(apartment_params)
-      if @apartment
-        render json: @apartment, status: :ok
+        apartment = Apartment.find_by(id: params[:id])
+      if apartment
+        apartment.update(apartment_params)
+        render json: apartment, status: :ok
       else
-        render json: @apartment.errors, status: :unprocessable_entity
+        render json: apartment.errors, status: :unprocessable_entity
       end
     end
 
@@ -53,8 +57,8 @@ class ApartmentsController < ApplicationController
   
     # DELETE /apartment
     def destroy
-     @apartment = Apartment.find(params[:id])
-      @apartment.destroy
+     apartment = Apartment.find(params[:id])
+      apartment.destroy
       head :no_content
 
     end
@@ -64,12 +68,12 @@ class ApartmentsController < ApplicationController
     private
 
       def set_apartment
-        @apartment = Apartment.find(params[:id])
+        apartment = Apartment.find(params[:id])
       end
   
       # Only allow a trusted parameter "white list" through.
       def apartment_params
-        params.require(:apartment).permit(:address, :rent)
+        params.require(:apartment).permit(:name, :location, :category)
       end 
 
       def render_not_found_response

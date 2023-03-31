@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :reviews, only: [:index, :show, :update, :destroy]
   resources :tenants, only: [:index, :destroy]
   resources :houses
+  resources :landlords, only: [:index, :show, :update, :delete]
+
+  resources :apartments
 
 
   # create a log in user review
@@ -10,6 +13,8 @@ Rails.application.routes.draw do
 
 
   # additional house routes
+
+  # tenants reviews of a house
   get '/houses/:id/reviews', to: "houses#house_reviews"
 
   get '/houses/:id/tenants', to: "houses#house_tenant"
@@ -34,14 +39,13 @@ Rails.application.routes.draw do
   post '/tenant/login', to: "sessions#tenant_login"
 
   # signs up a new tenant out a tenant
-  post '/tenants/signup', to: "sessions#tenant_signup"
+  post '/tenant/signup', to: "sessions#tenant_signup"
 
   delete '/tenant/logout', to: "sessions#tenant_logout"
   
   # apartment route
   get '/apartments/:id/houses', to: "apartments#apartment_houses"
   
-  resources :landlords, only: [:index, :show, :update, :delete]
 
   # landlord
 

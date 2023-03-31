@@ -28,8 +28,7 @@ puts "💤..seed ninja...🥷"
         "name": Faker::Lorem.words(number: 1),
         "location": Faker::Address.full_address,
         "category": Faker::Lorem.words(number: 1),
-        "landlord_id": landlord.id,
-        "house_id": rand(1..15)
+        "landlord_id": landlord.id
 
     )
 
