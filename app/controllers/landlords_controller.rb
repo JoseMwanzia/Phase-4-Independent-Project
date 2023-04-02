@@ -7,10 +7,15 @@ skip_before_action :landlord_authorize, only: [:index]
        render json: landlords
     end 
 
-    
-    def show 
-        landlord = Landlord.find(params[:id])
-        render json: landlord
+       
+    #shows the logged in landlord
+    def landlord 
+        landlord = landlord.find_by(id: session[:lid])
+        if landlord
+            render json: landlord, status: :ok
+        else 
+            render json: {message: "not found"}, status: :unprocessable_entity
+        end
     end
     
 

@@ -3,12 +3,6 @@ class ApplicationController < ActionController::API
     include ActionController::Cookies
 
 
-
-
-
-
-
-
 # Tenant methods
 
     def tenant_authorize 

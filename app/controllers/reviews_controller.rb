@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :tenant_authorize
-  skip_before_action :tenant_authorize, only: [:index]
+  # before_action :tenant_authorize
+  # skip_before_action :tenant_authorize, only: [:index]
 
     def index
         review = Review.all
@@ -19,15 +19,16 @@ class ReviewsController < ApplicationController
 
       # POST /tenant_review
       def add_review
-        review = Tenant.find(session[:tid].to_i).reviews.create(review_params)
+        tenant = Tenant.find_by(id: session[:tid])
         # review = tenant.reviews.create(review_params[:review])
-        if review
-          
+        if tenant
+          review = tenant.reviews.create(review_params)
           render json: review, status: :created
         else
-          render json: {errors: review.errors}, status: :unprocessable_entity
+          render json: {message: "Not added"}, status: :unprocessable_entity
         end
       end
+
       # PATCH/PUT /user_review/1
       def update
          review = Review.tenant.find_by(id: params[:id]).update(review_params)

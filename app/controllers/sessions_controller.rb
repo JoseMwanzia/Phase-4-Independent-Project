@@ -7,11 +7,11 @@ class SessionsController < ApplicationController
 
         sql = "username = :username OR email = :email"
 
-         tenant = Tenant.where(sql, { username: tenant_params[:username],email: tenant_params[:email] }).first
+         tenant = Tenant.where(sql, { username: tenant_s_params[:username],email: tenant_s_params[:email] }).first
 
-        if tenant&.authenticate(tenant_params[:password])
+        if tenant&.authenticate(tenant_s_params[:password])
             session[:tid] = tenant.id
-            render json: {message: "Login successful",  data: {user:user, token:token}}, status: :ok
+            render json: tenant, status: :ok
         else
             render json: {message: "Invalid username or password"}, status: :unauthorized
         end
@@ -27,42 +27,105 @@ class SessionsController < ApplicationController
         end
     end
 
-    def tenant_logout
+    # def tenant_logout
 
-        session.delete(:tid)
-        render json: { message: "Logged out successful"}
+    #     session.delete(:tid)
+    #     render json: { message: "Logged out successful"}
 
-    end
+    # end
 
     # landlord authentication
 
-    def landlord_signup 
-        landlord = Landlord.create(landlord_params)
-        if landlord 
+    def landlord_login
+
+        sql = "username = :username OR email = :email"
+
+        landlord = Landlord.where(sql, { username: landlord_s_params[:username],email: landlord_s_params[:email] }).first
+    
+        if landlord&.authenticate(landlord_s_params[:password])
             session[:lid] = landlord.id
-            render json: landlord, status: :created
+            render json: landlord, status: :ok
         else  
-            render json: { errors: landlord.errors, status: :unprocessable_entity, message: "Failed"}
+            render json: { message: "Failed"}
         end
     end
     
-    def landlord_login
-        landlord = Landlord.find_by(username: params[:username])
-        if landlord&.authenticate(params[:password])
+    def landlord_signup
+      
+        landlord = Landlord.create(landlord_params)
+        if landlord
             session[:lid] = landlord.id
             render json: landlord, status: :created
         else
-            render json: { error: "Invalid username or password"}, status: :unauthorized
+            render json: { error: "Not created"}, status: :unprocessable_entity
         end
     end
 
 
 
-    def landlord_logout
+    # def landlord_logout
 
-        session.delete(:lid)
-        render json: { message: "Logged out successful"}
+    #     session.delete(:lid)
+    #     render json: { message: "Logged out successful"}
+
+    # end
+
+    def logout 
+        tenant = Tenant.find_by(id: session[:tid].to_i)
+        landlord =  Landlord.find_by(id: session[:lid].to_i)
+        if landlord
+            session.delete :lid
+            render json: { message: "success"}
+        elsif tenant
+            session.delete :tid
+            render json: { message: "success"}
+        else
+            render json: {message: "no one logged"}
+        end
 
     end
+
+    # password reset
+
+    def password_reset
+        tenant = Tenant.find_by(email: tenant_params[:email] )
+        landlord =  Landlord.find_by(email: landlord_params[:email])
+        if tenant
+            tenant.update(password: tenant_params[:password])
+            render json: {message: "Tenants password reset succesfully"}, status: :created
+        elsif landlord
+            landlord.update(password: landlord_params[:password])
+            render json: {message: "landlord password reset succesfully"}, status: :created
+        else 
+            render json: {message: "unsuccessfull"}, status: :unprocessable_entity
+        end
+
+    end
+
+
+    def check_login_status
+        tenant = Tenant.find_by(id: session[:tid].to_i)
+        landlord =  Landlord.find_by(id: session[:lid].to_i)
+        if tenant
+            render json: {message: "success", data: tenant}, status: :ok
+        elsif landlord
+            render json: {message: "success", data: landlord}, status: :ok
+
+        else
+            render json: {message: "No one is logged in"}
+        end
+    end
+
+    private
+
+    def tenant_s_params 
+        params.require(:session).permit(:id, :username, :email, :password)
+    end
+
+
+
+def landlord_s_params
+    params.require(:session).permit(:username, :contact_number, :email, :password)
+end
 
 end

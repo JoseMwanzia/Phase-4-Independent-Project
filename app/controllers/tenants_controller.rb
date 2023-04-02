@@ -1,7 +1,7 @@
  class TenantsController < ApplicationController
 
-    before_action :landlord_authorize
-    skip_before_action :landlord_authorize, only: [:tenant, :update, :tenant_reviews, :house_tenant, :tenant_register]
+    # before_action :landlord_authorize
+    # skip_before_action :landlord_authorize, only: [:tenant, :update, :tenant_reviews, :house_tenant, :tenant_register]
 
     # shows all tenants 
     def index 

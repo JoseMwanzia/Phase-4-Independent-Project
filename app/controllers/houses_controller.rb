@@ -2,7 +2,7 @@ class HousesController < ApplicationController
 
    
     before_action :landlord_authorize 
-    skip_before_action :landlord_authorize, only: [:index, :show, :house_apartment, :house_reviews, :update]
+    skip_before_action :landlord_authorize, only: [:index, :show, :house_apartment, :house_reviews, :add_tenant_house]
 
     rescue_from StandardError, with: :standard_error
 
@@ -12,8 +12,9 @@ class HousesController < ApplicationController
     end
 
 
-    def create 
-        house = tenant.houses.create(house_params)
+    def add_house
+        apartment = Apartment.find(params[:id])
+        house = apartment.house.create(house_params)
         if house.valid? 
             render json: house, status: :created
         else  
@@ -28,6 +29,18 @@ class HousesController < ApplicationController
         else 
             render json: { err3ors: house.errors, status: :unprocessable_entity}
         end
+    end
+
+    def house_number
+
+        house = House.find_by(house_number: params[:house_number])
+        if house
+            render json: house, status: :ok
+        else 
+            render json: { err3ors: house.errors, status: :unprocessable_entity}
+        end
+
+
     end
 
     def update 
@@ -72,6 +85,19 @@ class HousesController < ApplicationController
             render json: house, serializer: HouseTenantSerializer, status: :ok
         else 
             render json:{message: "Not found"}, status: :not_found
+        end
+    end
+
+    # adding a tenant to a house
+
+    def add_tenant_house
+        tenant = Tenant.find(session[:tid])
+        house = tenant.houses.create(house_params)
+        if house
+            render json: house, status: :created
+        else 
+            render json: {messaage: "Not found"}, status: :unprocessable_entity
+
         end
     end
 

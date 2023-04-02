@@ -306,3 +306,8 @@ This repository is maintained by:
   "email": "landi@mail.com",
   "password": "landi"
 }
+
+{
+  "rating": 4,
+  "description": "Worth the doh"
+}

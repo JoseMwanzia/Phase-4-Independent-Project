@@ -1,6 +1,8 @@
 class ApartmentsController < ApplicationController
     # before_action :set_apartment, only: [:show, :update, :destroy]
 
+    before_action :landlord_authorize
+    skip_before_action :landlord_authorize, only: [:index, :show, :apartment_houses]
     # GET /apartment
     def index
       @apartments = Apartment.all
