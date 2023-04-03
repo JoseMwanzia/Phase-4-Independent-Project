@@ -2,9 +2,11 @@
 
 RealState is a basic API built with Ruby rails. 
 
-It serves as a backend API [link]()
+It serves as a backend API [link](https://realstate-5uk1.onrender.com)
 
 ```
+
+    https://realstate-5uk1.onrender.com
 
 ```
 
@@ -73,7 +75,7 @@ This application is a simple web API that allows users to:
 
 
 
-Or use the deployed [link]() directly:
+Or use the deployed [link](https://realstate-5uk1.onrender.com) directly:
 
 ```
 
@@ -263,6 +265,35 @@ Routes for tenant, house, apartment, and landlord models:
 
 ```
 
+
+### PRROTECTEED ROUTES
+
+- Only landlord can access
+
+```
+    GET /landlords/{landlordId}/apartments - returns a list of all apartments that belong to the specified landlord
+
+    POST /landlords - creates a new landlord
+
+    GET /landlords/{landlordId} - returns a specific landlord
+
+    PUT /landlords/{landlordId} - updates a specific landlord
+
+    DELETE /landlords/{landlordId} - deletes a specific 
+    landlord
+
+    POST /apartments - creates a new apartment
+
+    PUT /apartments/{apartmentId} - updates a specific apartment
+
+    DELETE /apartments/{apartmentId} - deletes a specific apartment
+
+    PUT /houses/{houseId} - updates a specific house
+
+    DELETE /houses/{houseId} - deletes a specific house
+
+```
+
 ## LICENSE
 
 This repository is distributed under the MIT License
@@ -284,30 +315,8 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 ## Author
 This repository is maintained by:
 
-- [Kimathi Njoki](https://github.com/kimathinjoki) `scram Master`
+- [Kimathi Njoki](https://github.com/kimathinjoki) `scrum Master`
 - [Joseph Mwanzia](https://github.com/JoseMwanzia)
 - [Kenrick Ngetich](https://github.com/Kenrick99)
 - [Khalid Ahmed](https://github.com/certihimo)
 
-
-
-
-
-
-{
-"name": "arrow den",
-"location": "kikuyu",
-"category": "residential"
-}
-
-
-{
-  "username": "landi",
-  "email": "landi@mail.com",
-  "password": "landi"
-}
-
-{
-  "rating": 4,
-  "description": "Worth the doh"
-}
